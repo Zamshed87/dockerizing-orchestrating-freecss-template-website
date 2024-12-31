@@ -1,11 +1,11 @@
-# Use the official httpd image from Docker Hub
-FROM httpd:latest
+# Use official Nginx image as a base image
+FROM nginx:alpine
 
-# Copy the website files from the build context to the Apache document root
-COPY . /usr/local/apache2/htdocs/
+# Copy your website files into the Nginx container
+COPY . /usr/share/nginx/html
 
-# Expose port 80 for the web server
-EXPOSE 95
+# Expose port 80 for web traffic
+EXPOSE 80
 
-# Start the Apache server
-CMD ["httpd-foreground"]
+# Start Nginx in the foreground (default command)
+CMD ["nginx", "-g", "daemon off;"]
